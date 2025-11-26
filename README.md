@@ -26,7 +26,13 @@ Set `showSimulationDuringTraining = true` to watch the pendulum during training.
 
 ## After Training
 
-Before leaving, **delete replay buffer and save your trained agent**:
+Run a simulation to record a video of your trained agent:
+
+```matlab
+sim(agent, env, simOpts);
+```
+
+Then **delete the replay buffer and save your trained agent**:
 
 ```matlab
 clear experience trainingStats
