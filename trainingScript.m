@@ -38,7 +38,7 @@ entropyLearnRate = 3e-4;      % Learning rate for entropy coefficient
 %  ENVIRONMENT SETUP (DO NOT MODIFY)
 %  ========================================================================
 % --- Training Parameters ---
-maxEpisodes = 1000;           % Total number of training episodes
+maxEpisodes = 500;           % Total number of training episodes
 episodeDuration = 5;          % Duration of each episode (seconds)
 scoreAveragingWindow = 10;    % Window for averaging episode rewards
 
