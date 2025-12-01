@@ -43,6 +43,45 @@ Repeat for each experiment (`experiment_1.mat`, `experiment_2.mat`, `experiment_
 
 **Bring these `.mat` files to the lab session.**
 
+## Hardware Deployment
+
+⚠️ **CAUTION: Trained agents can be very unstable on real hardware. Always be ready to stop the system immediately.**
+
+### Requirements
+- Quanser QUBE-Servo 2 hardware
+- `rotpen_hardware.slx` Simulink model
+- Trained agent from your experiments
+
+### Running on Hardware
+
+The hardware model (`rotpen_hardware.slx`) supports two operational modes:
+
+1. **Balance Mode**: Activates when the pendulum is already upright
+2. **Swing-up Mode**: Agent must swing up the pendulum from the down position and maintain balance
+
+### Deployment Steps
+
+1. Load your trained agent:
+   ```matlab
+   load('experiment_1.mat')
+   ```
+
+2. Open the hardware model:
+   ```matlab
+   open('rotpen_hardware.slx')
+   ```
+
+3. Configure the desired mode in the model parameters (balance or swing-up)
+
+4. Deploy to the Quanser hardware
+
+5. **Monitor closely** and be prepared to emergency stop if the system becomes unstable
+
+### Safety Tips
+- Start with balance mode to verify basic stability
+- Have the stop readily accessible
+- Clear the workspace around the pendulum
+
 ## Local Installation (Optional)
 
 For faster training on a powerful machine, install MATLAB with these toolboxes:
