@@ -1,0 +1,18 @@
+# Simulink / Simscape build caches (regenerated on every build)
+slprj/
+*.slxc
+*.autosave
+
+# QUARC build output (lab PC)
+*_quarc_win64/
+*.rt-win64
+
+# Automatic backups MATLAB makes when upgrading a model to a newer release
+*.r20[0-9][0-9][ab]
+
+# MATLAB editor backups
+*.asv
+*.m~
+
+# macOS
+.DS_Store
