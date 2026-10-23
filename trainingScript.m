@@ -52,9 +52,20 @@ volt_limit = 6;          % Motor voltage limit (V)
 Ts = 0.01;               % Sample time (seconds)
 
 % Physical system parameters
+% sysid values
+%motorResistance = 0.505;
+%dampingArm = 0.0705;
+%dampingPendulum = 0.0007;
+%armCoulomb = 0.022;          
+%armBreakaway = armCoulomb;   
+%velTau = 0.05;              
+
 motorResistance = 0.22;
 dampingArm = 0.25;
 dampingPendulum = 0.0007;
+armCoulomb = 1e-6;
+armBreakaway = armCoulomb;
+velTau = 0.05;
 
 % Initial conditions (reset function will randomize these)
 theta0 = 0;
