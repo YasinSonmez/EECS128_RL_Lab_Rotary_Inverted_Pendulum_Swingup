@@ -26,22 +26,38 @@ Set `showSimulationDuringTraining = true` to watch the pendulum during training.
 
 ## After Training
 
-Run a simulation to record a video of your trained agent:
+### Save the Agent and Generate the Hardware Policy
 
 ```matlab
-sim(agent, env, simOpts);
+save("experiment_1.mat","agent","trainingStats")
+generatePolicyBlock(agent,MATFileName="policy_1.mat")
 ```
 
-Then **delete the replay buffer and save your trained agent**:
+Repeat with the corresponding experiment number for all three runs.
+
+### Export the Training Curve
 
 ```matlab
-clear experience trainingStats
-save('experiment_1.mat')
+figure
+plot(trainingStats.EpisodeIndex,trainingStats.EpisodeReward)
+xlabel("Episode")
+ylabel("Episode reward")
+grid on
+exportgraphics(gcf,"training_curve_1.png",Resolution=300)
 ```
 
-Repeat for each experiment (`experiment_1.mat`, `experiment_2.mat`, `experiment_3.mat`).
+### Record a Simulation Video
 
-**Bring these `.mat` files to the lab session.**
+Run the post-training simulation with Multibody Explorer enabled, then create a video from the recorded animation:
+
+```matlab
+experience = sim(agent,env,simOpts);
+smwritevideo(mdl,"simulation_1",VideoFormat="mpeg-4")
+```
+
+Alternatively, after simulation, open **Video Creator** in Multibody Explorer, choose the file name and format, and click **Create**.
+
+Repeat the plot and video steps for each experiment. Bring the three experiment MAT files, three policy MAT files, training-curve images, and simulation videos to the lab session.
 
 ## Hardware Deployment
 
@@ -61,21 +77,24 @@ The hardware model (`rotpen_hardware.slx`) supports two operational modes:
 
 ### Deployment Steps
 
-1. Load your trained agent:
+1. On the lab computer, place `setup_hardware.m`, `rotpen_hardware.slx`, and the three policy MAT files in the same folder.
+
+2. Initialize the required hardware-model variables and open the model:
    ```matlab
-   load('experiment_1.mat')
+   setup_hardware
    ```
 
-2. Open the hardware model:
+3. Configure the existing **Policy1** block to use the desired policy data file:
    ```matlab
-   open('rotpen_hardware.slx')
+   set_param("rotpen_hardware/Policy1","MATFile","policy_1.mat")
    ```
+   You can also double-click **Policy1** and set **Policy block data MAT file** to `policy_1.mat`.
 
-3. Configure the desired mode in the model parameters (balance or swing-up)
+4. For balance mode, connect the output of the **Balance** switch to the **Hardware** subsystem. For swing-up mode, disconnect that line and connect the output of the **Swing-up** switch instead.
 
-4. Deploy to the Quanser hardware
+5. Start with balance mode, then build and run the model on the Quanser hardware using QUARC.
 
-5. **Monitor closely** and be prepared to emergency stop if the system becomes unstable
+6. **Monitor closely** and be prepared to emergency stop if the system becomes unstable.
 
 ### Safety Tips
 - Start with balance mode to verify basic stability
