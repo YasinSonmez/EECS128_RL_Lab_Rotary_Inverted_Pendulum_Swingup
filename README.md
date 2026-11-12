@@ -84,11 +84,11 @@ The hardware model (`rotpen_hardware.slx`) supports two operational modes:
    setup_hardware
    ```
 
-3. Configure the existing **Policy1** block to use the desired policy data file:
+3. Configure the existing **Policy** block to use the desired policy data file:
    ```matlab
-   set_param("rotpen_hardware/Policy1","MATFile","policy_1.mat")
+   set_param("rotpen_hardware/Policy","MATFile","policy_1.mat")
    ```
-   You can also double-click **Policy1** and set **Policy block data MAT file** to `policy_1.mat`.
+   You can also double-click **Policy** and set **Policy block data MAT file** to `policy_1.mat`.
 
 4. For balance mode, connect the output of the **Balance** switch to the **Hardware** subsystem. For swing-up mode, disconnect that line and connect the output of the **Swing-up** switch instead.
 
