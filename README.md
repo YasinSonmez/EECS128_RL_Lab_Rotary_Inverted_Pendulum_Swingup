@@ -52,7 +52,8 @@ Run the post-training simulation with Multibody Explorer enabled, then create a 
 
 ```matlab
 experience = sim(agent,env,simOpts);
-smwritevideo(mdl,"simulation_1",VideoFormat="mpeg-4")
+smwritevideo(mdl, "simulation_1", VideoFormat="motion jpeg avi");
+system("ffmpeg -y -i simulation_1.avi -c:v libx264 -pix_fmt yuv420p simulation_1.mp4");
 ```
 
 Alternatively, after simulation, open **Video Creator** in Multibody Explorer, choose the file name and format, and click **Create**.
